@@ -6,7 +6,7 @@ from spreadsheet import *
 from recommend import *
 
 weekday = datetime.datetime.today().weekday()
-crosstab = pd.read_csv(r"E:\Projects\Burito Recommendation\crosstab.csv")
+crosstab = pd.read_csv("crosstab.csv")
 
 app = Flask(__name__)
 
