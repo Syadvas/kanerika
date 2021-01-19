@@ -26,4 +26,5 @@ rsa==4.7
 six==1.15.0
 urllib3==1.26.2
 Werkzeug==1.0.1
+gspread_dataframe ==3.2.0
 gunicorn

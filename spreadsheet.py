@@ -1,6 +1,7 @@
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from gspread_dataframe import set_with_dataframe
 import pprint
 import json
 
@@ -19,12 +20,12 @@ def getClient():
 
 
 
-def getInstance(x,client):
+def getInstance(x,client,sheetNo):
     # get the instance of the Spreadsheet
     sheet = client.open(x)
 
     # get the first sheet of the Spreadsheet
-    sheet_instance = sheet.get_worksheet(0)
+    sheet_instance = sheet.get_worksheet(sheetNo)
     return sheet_instance
 
 
@@ -39,17 +40,19 @@ def fetchRecords(sheet_instance):
 
 def clearSheet(sheet_instance):
     #Delete All Instances
-    sheet_instance.delete_columns(1)
     sheet_instance.delete_columns(2)
+    sheet_instance.delete_columns(1)
     return True 
 
 
 
-def insertDF(df):
-    sheet_instance.insert_rows(df.values.tolist())
+def insertDF(df,sheet_instance):
+    set_with_dataframe(sheet_instance, df)
     return True
 
-
+def insertDFs(df,sheet_instance):
+    set_with_dataframe(sheet_instance, df)
+    return True
 
 if __name__ == "main":
     client = getClient()
